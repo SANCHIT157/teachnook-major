@@ -1,0 +1,23 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+a = pd.read_csv('https://raw.githubusercontent.com/ameenmanna8824/DATASETS/main/Salary_Data.csv')
+plt.scatter(a['YearsExperience'],a['Salary'],color = 'red')
+plt.grid()
+plt.title('DATA VS SALARY')
+plt.xlabel('DATA')
+plt.ylabel('SALARY')
+x = a.iloc[0:30,0:1].values
+y = a.iloc[:,1].values
+model = LinearRegression()
+model.fit(x,y)
+y_pred = model.predict(x)
+print(model.predict([[2.5]]))
+m = model.coef_
+c = model.intercept_
+print(m*2.5 + c)
+plt.scatter(x,y)
+plt.plot(x,y_pred, c = 'orange')
+plt.title('BEST FIT LINE')
+plt.xlabel('YEARS OF EXPERIENCE')
+plt.ylabel('SALARY')
